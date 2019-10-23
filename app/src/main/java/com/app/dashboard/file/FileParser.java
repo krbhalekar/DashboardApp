@@ -51,13 +51,13 @@ public class FileParser {
             Element element = doc.getDocumentElement();
             element.normalize();
             System.out.println("Root element :" + element.getNodeName());
-            NodeList componentList = doc.getElementsByTagName("ComponentBean");
+            NodeList componentList = doc.getElementsByTagName("Component");
 
             for (int i = 0; i < componentList.getLength(); i++) {
                 Node node1 = componentList.item(i);
                 if (node1.getNodeType() == Node.ELEMENT_NODE) {
                     Element componentElement = (Element) node1;
-
+                    System.out.println(componentElement.getAttribute("Name").trim());
                     ComponentBean component = new ComponentBean();
                     component.setName(componentElement.getAttribute("Name").trim());
                     component.setFunctionalArea(componentElement.getAttribute("FunctionalArea").trim());
@@ -71,11 +71,11 @@ public class FileParser {
                     component.setNbPerfFailures(Integer.parseInt(componentElement.getAttribute("nbPerfFailures").trim()));
                     component.setEmail(componentElement.getAttribute("Email").trim());
                     component.setTotalElapsedTime(Long.parseLong(componentElement.getAttribute("TotalElapsedTime").replace("&#xA;", "").trim()));
-//                    c1.add(component);
+                    c1.add(component);
                     System.out.println(component.toString());
 
 
-/*                    NodeList executionList = ((Element) componentList.item(i)).getElementsByTagName("Execution");
+                    NodeList executionList = ((Element) componentList.item(i)).getElementsByTagName("Execution");
 
                     for (int j = 0; j < executionList.getLength(); j++) {
 
@@ -87,14 +87,14 @@ public class FileParser {
 
                             for (int l = 0; l < suite2List.getLength(); l++) {
 
-                                NodeList caseList = ((Element) suite2List.item(l)).getElementsByTagName("CaseBean");
+                                NodeList caseList = ((Element) suite2List.item(l)).getElementsByTagName("Case");
 
                                 for (int m = 0; m < caseList.getLength(); m++) {
 
                                     Node node2 = caseList.item(m);
                                     if (node2.getNodeType() == Node.ELEMENT_NODE) {
                                         Element caseElement = (Element) node2;
-
+                                        System.out.println(caseElement.getAttribute("Name").trim());
                                         CaseBean c = new CaseBean();
                                         c.setComponentName(componentElement.getAttribute("Name").trim());
                                         c.setName(caseElement.getAttribute("Name").trim());
@@ -106,20 +106,20 @@ public class FileParser {
                                         c.setElapsedTime(Long.parseLong(caseElement.getAttribute("ElapsedTime")));
                                         c.setReRun(caseElement.getAttribute("Rerun") == "FALSE" ? false : true);
 
-//                                        c2.add(c);
+                                        c2.add(c);
                                         System.out.println(c.toString());
                                     }
                                 }
                             }
                         }
-                    }*/
+                    }
                 }
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        fileCallback.onCompleted(c1, c2);
+        fileCallback.onCompleted(c1, c2);
     }
 
 
