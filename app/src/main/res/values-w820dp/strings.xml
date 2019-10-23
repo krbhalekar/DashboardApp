@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="component_record_inserted">Component Record Inserted Successfully</string>
+    <string name="component_record_exists">Component Record Exists</string>
+    <string name="case_record_exists">Case Record Exists</string>
+    <string name="case_record_inserted">Case Record Inserted</string>
+</resources>

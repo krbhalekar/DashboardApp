@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">DashboardApp</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="loading">Loading</string>
+    <string name="component_record_inserted">Component Record Inserted Successfully</string>
+    <string name="component_record_exists">Component Record Exists</string>
+    <string name="case_record_exists">Case Record Exists</string>
+    <string name="case_record_inserted">Case Record Inserted</string>
+</resources>
