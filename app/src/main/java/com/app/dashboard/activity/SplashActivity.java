@@ -71,7 +71,7 @@ public class SplashActivity extends BaseActivity implements FileCallback {
 
     @Override
     public void onCompleted(List<ComponentBean> c1, List<CaseBean> c2) {
-        for(ComponentBean com : c1)
+/*        for(ComponentBean com : c1)
         {
             List<ComponentBean> componentList = ComponentBean.find(ComponentBean.class, "name = ?", com.getName());
             if (componentList.size() > 0) {
@@ -94,7 +94,7 @@ public class SplashActivity extends BaseActivity implements FileCallback {
                 System.out.println(mApp.getResources().getString(R.string.case_record_inserted));
                 LogUtil.showLog(TAG, mApp.getResources().getString(R.string.case_record_inserted), 4);
             }
-        }
+        }*/
 
     }
 

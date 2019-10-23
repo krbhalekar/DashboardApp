@@ -4,4 +4,7 @@
     <string name="component_record_exists">Component Record Exists</string>
     <string name="case_record_exists">Case Record Exists</string>
     <string name="case_record_inserted">Case Record Inserted</string>
+    <string name="line_graph">Line Graph</string>
+    <string name="pie_chart">Pie Chart</string>
+    <string name="welcome">Welcome</string>
 </resources>
