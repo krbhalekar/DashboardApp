@@ -1,7 +1,6 @@
 package com.app.dashboard.fragment;
 
-import android.content.Context;
-import android.net.Uri;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,9 +9,8 @@ import android.view.ViewGroup;
 
 import com.app.dashboard.R;
 import com.app.dashboard.beans.CaseBean;
-import com.app.dashboard.beans.ComponentBean;
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
@@ -41,37 +39,28 @@ public class PieChartFragment extends Fragment {
     }
 
     private void loadData() {
-        List<CaseBean> caseBeanList = CaseBean.find(CaseBean.class);
+        ArrayList tempCaseList = new ArrayList();
+        List<CaseBean> caseStatusBeanList = CaseBean.findWithQuery(CaseBean.class, "SELECT CASE_STATUS, COUNT(CASE_STATUS) AS COUNT FROM CASE_BEAN GROUP BY CASE_STATUS");
+        System.out.println("caseStatusBeanList = " + caseStatusBeanList.size());
+        for(int i = 0; i < caseStatusBeanList.size();i++){
+            System.out.println("Status = " + caseStatusBeanList.get(i).getCaseStatus());
+            System.out.println("Count = " + caseStatusBeanList.get(i).getCount());
+            tempCaseList.add(new PieEntry(caseStatusBeanList.get(i).getCount(), caseStatusBeanList.get(i).getCaseStatus(), i));
+        }
 
-        ArrayList NoOfEmp = new ArrayList();
-
-        NoOfEmp.add(new PieEntry(945f, 0));
-        NoOfEmp.add(new PieEntry(1040f, 1));
-        NoOfEmp.add(new PieEntry(1133f, 2));
-        NoOfEmp.add(new PieEntry(1240f, 3));
-        NoOfEmp.add(new PieEntry(1369f, 4));
-        NoOfEmp.add(new PieEntry(1487f, 5));
-        NoOfEmp.add(new PieEntry(1501f, 6));
-        NoOfEmp.add(new PieEntry(1645f, 7));
-        NoOfEmp.add(new PieEntry(1578f, 8));
-        NoOfEmp.add(new PieEntry(1695f, 9));
-        PieDataSet dataSet = new PieDataSet(NoOfEmp, "Number Of Employees");
-
-        List<String> year = new ArrayList();
-
-        year.add("2008");
-        year.add("2009");
-        year.add("2010");
-        year.add("2011");
-        year.add("2012");
-        year.add("2013");
-        year.add("2014");
-        year.add("2015");
-        year.add("2016");
-        year.add("2017");
-        PieData data = new PieData(year, dataSet);
+        PieDataSet dataSet = new PieDataSet(tempCaseList, "Number Of Cases");
+        dataSet.setValueTextColor(Color.WHITE);
+        dataSet.setValueTextSize(10f);
+        PieData data = new PieData(dataSet);
         pieChart.setData(data);
         dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
         pieChart.animateXY(5000, 5000);
+        pieChart.setMinAngleForSlices(60f);
+        pieChart.setCenterText("Case Status Count");
+        pieChart.setCenterTextSize(20);
+        pieChart.setCenterTextColor(Color.parseColor("#0097A7"));
+        Description description =  new Description();
+        description.setText("Case Status Pie Chart");
+        pieChart.setDescription(description);
     }
 }

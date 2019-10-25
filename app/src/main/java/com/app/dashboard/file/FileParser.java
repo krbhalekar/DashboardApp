@@ -120,6 +120,7 @@ public class FileParser {
             e.printStackTrace();
         }
         fileCallback.onCompleted(c1, c2);
+        fileCallback.onDbStoreCompleted();
     }
 
 

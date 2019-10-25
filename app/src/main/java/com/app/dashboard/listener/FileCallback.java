@@ -13,4 +13,6 @@ public interface FileCallback {
     void onLoading();
 
     void onCompleted(List<ComponentBean> c1, List<CaseBean> c2);
+
+    void onDbStoreCompleted();
 }

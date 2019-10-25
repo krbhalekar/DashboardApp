@@ -7,4 +7,6 @@
     <string name="line_graph">Line Graph</string>
     <string name="pie_chart">Pie Chart</string>
     <string name="welcome">Welcome</string>
+    <string name="welcome_to_dashboard">Welcome to Dashboard Application.\\nThis application will process the report fetched from server and display the same in graphical format.</string>
+    <string name="user_instruction">Swipe to right of the screen to view the graphical representation of Cases and Components.</string>
 </resources>

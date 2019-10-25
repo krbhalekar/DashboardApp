@@ -16,6 +16,7 @@ public class CaseBean extends SugarRecord {
     private String keywords;
     private long elapsedTime;
     private boolean reRun;
+    private int count;
 
     public String getComponentName() {
         return componentName;
@@ -87,6 +88,14 @@ public class CaseBean extends SugarRecord {
 
     public void setReRun(boolean reRun) {
         this.reRun = reRun;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 
     @Override

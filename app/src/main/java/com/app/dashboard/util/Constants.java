@@ -10,4 +10,5 @@ public class Constants {
     public static final String REPORT_XML= "runtests.output.all.xml";
     public static final boolean LOG_FLAG = true;
     public static final int ASK_MULTIPLE_PERMISSION_REQUEST_CODE = 9501;
+    public static final String DB_STORE_FLAG = "database_store_flag";
 }

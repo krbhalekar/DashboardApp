@@ -71,31 +71,37 @@ public class SplashActivity extends BaseActivity implements FileCallback {
 
     @Override
     public void onCompleted(List<ComponentBean> c1, List<CaseBean> c2) {
-/*        for(ComponentBean com : c1)
-        {
-            List<ComponentBean> componentList = ComponentBean.find(ComponentBean.class, "name = ?", com.getName());
-            if (componentList.size() > 0) {
-                System.out.println(mApp.getResources().getString(R.string.component_record_exists));
-                LogUtil.showLog(TAG, mApp.getResources().getString(R.string.component_record_exists), 4);
-            } else {
-                com.save();
-                System.out.println(mApp.getResources().getString(R.string.component_record_inserted));
-                LogUtil.showLog(TAG, mApp.getResources().getString(R.string.component_record_inserted), 4);
+        if(mApp.getSharedPreference().fetchIntegerPrefernce(Constants.DB_STORE_FLAG,0)==0){
+            for(ComponentBean com : c1)
+            {
+                List<ComponentBean> componentList = ComponentBean.find(ComponentBean.class, "name = ?", com.getName());
+                if (componentList.size() > 0) {
+                    System.out.println(mApp.getResources().getString(R.string.component_record_exists));
+                    LogUtil.showLog(TAG, mApp.getResources().getString(R.string.component_record_exists), 4);
+                } else {
+                    com.save();
+                    System.out.println(mApp.getResources().getString(R.string.component_record_inserted));
+                    LogUtil.showLog(TAG, mApp.getResources().getString(R.string.component_record_inserted), 4);
+                }
+            }
+
+            for(CaseBean c : c2){
+                List<CaseBean> caseList = CaseBean.find(CaseBean.class, "short_id = ?", c.getShortId());
+                if (caseList.size() > 0) {
+                    System.out.println(mApp.getResources().getString(R.string.case_record_exists));
+                    LogUtil.showLog(TAG, mApp.getResources().getString(R.string.case_record_exists), 4);
+                } else {
+                    c.save();
+                    System.out.println(mApp.getResources().getString(R.string.case_record_inserted));
+                    LogUtil.showLog(TAG, mApp.getResources().getString(R.string.case_record_inserted), 4);
+                }
             }
         }
+    }
 
-        for(CaseBean c : c2){
-            List<CaseBean> caseList = CaseBean.find(CaseBean.class, "short_id = ?", c.getShortId());
-            if (caseList.size() > 0) {
-                System.out.println(mApp.getResources().getString(R.string.case_record_exists));
-                LogUtil.showLog(TAG, mApp.getResources().getString(R.string.case_record_exists), 4);
-            } else {
-                c.save();
-                System.out.println(mApp.getResources().getString(R.string.case_record_inserted));
-                LogUtil.showLog(TAG, mApp.getResources().getString(R.string.case_record_inserted), 4);
-            }
-        }*/
-
+    @Override
+    public void onDbStoreCompleted() {
+        mApp.getSharedPreference().saveIntegerPrefernce(Constants.DB_STORE_FLAG,1);
     }
 
     private class LoadAsync extends AsyncTask<Void, Void, Void> {
